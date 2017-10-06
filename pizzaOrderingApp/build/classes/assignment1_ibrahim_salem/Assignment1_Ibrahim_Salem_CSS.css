@@ -1,0 +1,52 @@
+/* 
+    Created on : 20-Jul-2017, 8:03:15 PM
+    Author     : Ibrahim
+*/
+.mainFxmlClass { /*This Style Class styles the AnchorPane*/
+    -fx-background-image:url("backgroundImage.jpg");
+    /* Image downloaded from: https://pixabay.com/p-1344720/?no_redirect */
+    -fx-backgorund-size: cover;
+}
+
+.addButton { /*This Style Class styles the ADD PIZZA button */
+    -fx-text-fill: black;
+    -fx-font-weight: bolder;
+    -fx-background-color: khaki;
+}
+.orderButton { /*This Style Class styles the FINISH ORDERING Button*/
+     -fx-text-fill: black;
+    -fx-font-weight: bolder;
+    -fx-background-color: khaki;
+}
+.pizzaSizeDetails { /*This Style Class styles the PIZZA SIZE DETAILS heading*/
+    -fx-background-color: tan;
+}
+.pizzaCrustDetails { /*This Style Class styles the PIZZA CRUST DETAILS heading*/
+    -fx-background-color: tomato;
+}
+.pizzaToppingsDetails { /*This Style Class styles the PIZZA TOPPING DETAILS heading*/
+    -fx-background-color: lightsalmon;
+}
+.pizzaSizeLabel { /*This Style Class styles the PIZZA SIZE label*/
+    -fx-text-fill: white;
+    -fx-background-color: black;
+}
+.phoneNumberLabel { /*This Style Class styles the RESTAURANT's PHONE NUMBER label*/
+    -fx-font-size:25pt;
+}
+.addressLabel { /*This Style Class styles the RESTAURANT's ADDRESS label*/
+    -fx-font-size: 20pt;
+    -fx-text-fill: white;
+    -fx-background-color: sandybrown;
+}
+.priceLabel { /*This Style Class styles the different items' PRICE label*/
+    -fx-text-fill: white;
+    -fx-background-color: orangered;
+}
+.pizzaCrustRadioButtons{ /*This Style Class styles the TEXT of the PIZZA CRUST  radio buttons */
+    -fx-text-fill: white;
+}
+.pizzaToppingsCheckBox { /*This Style Class styles the TEXT of the Toppings  Check Boxes */
+    -fx-text-fill: white;
+}
+
