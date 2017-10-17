@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+File name: cryptogram.html
+Author: Ibrahim W.Salem
+Version: 1.0
+Date Created: April 22, 2017
+Date Updated: April 23, 2017
+Description: This is a board game webpage (Cryptogram) for the website that has been created for Assignment#4
+-->
+<head>
+<!-- Head is an element that should never be left empty. It is vitally crucial, because it is used to specify info about the page/document itself (e.g. the title of the webpage and the amount of characters allowed). -->
+	<title>ASSIGNMENT#4 CRYPTOGRAM BOARD GAME PAGE</title>
+	<meta charset="utf-8" />
+	<meta name="author" content="Ibrahim W. salem">
+	<meta name="description" content="This page is a board game webpage (Cryptogram) for the website of Assignment#4">
+    <!-- Taking control of the user's view port across all devices - Source: https://www.w3schools.com/css/css_rwd_viewport.asp -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--This CSS file contains the cascade styling for all of the web pages of this website -->
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
+	<!-- according to w3schools the following line imports the font-awesome icons
+		Source: https://www.w3schools.com/icons/ -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<!-- Note: Prof. Bajcar, I also provided fontawesome.io with my email address and accordingly they provided me with the following code snippet:
+				<script src="https://use.fontawesome.com/76b47f5b40.js"></script> 
+    However, I will not use it in this project, in order to abide by your instructions. --> 
+	
+	<style>
+        /* Select the containing class [i.e. the containing box] of both the 'board' and the 'alpha' list */
+        .game {
+            /* Set the background color of all the content within the "game" class to white, in order to have both the 'board' and the 'alpha' list be displayed within the same white container */
+            background-color: white;
+            /* Have the margin set to auto, this will guarantee that both of our lists will stay in the middle of the page no matter what is the screen size */
+            margin: auto;
+            /* Specify the width of both lists simultaneously . This helps us remove unnecessary padding on the right and left side */
+            width: 80%;
+            
+            position: relative;
+            top: -2em;
+        }
+        /* Select the first unordered list by means of selecting its containing class (i.e. the board class) */
+        .board {
+            /* Set the all padding values (up, right, and left) to 25px, except for bottom [in order to bring the board list and the alpha list closer together */
+            padding: 25px 25px 0px 25px;
+            /* Center the text of all of the unordered list elements */
+            text-align: center;
+            /* Display all the elements of the unorder list as a block and on the same line [as outlined in the assignment's instructions] */
+            display: inline-block;
+        }
+        /* Select all the <li> elements of the "board" class in order to style the cryptogram 'HELLO WORLD' phrase */
+        .board li {
+            /* Specify that the element floats to the left */
+            float: left;
+            /*list style as none in order to remove the bulletpoints */
+            list-style: none;
+            /* Once the user points at any of the list items the cursor icon will change into a pointer */
+            cursor: pointer;
+            background-color: white;
+            color: black;
+            padding: 5px;
+        }
+        /* select the label elements of the board="" class */
+        .board label {
+            /* Set the font size to 2em [as outlined in the assignment's instructions] */
+            font-size: 2em;
+            /* Display the label elements as a block elements (e.g. like a <p> element), in order to have them move to a new line under the input elements */
+            display: block;
+            /* Transform all the letters to uppercase */
+            text-transform: uppercase;
+        }
+        /* Select all the input elements of the "board" class (which are embedded within a <ul> element) */
+        /* This CSS code styles the input control */
+        .board input {
+            /* Prof. Bajcar, you have kindly asked us set the width of the input elements to 90%. However the only way to make the input boxes appear as the ones in the picture example is to use a different value. Hope that is okay with you; I am just trying to approximate the screenshoot examples styling as much as possible */
+            width: 1.5em;
+            /* Change the input's color to blue [will not be visible but has been added as the assignment's instructions stipulate] */
+            color: blue;
+            /* Specify the vertical centering for the input elements [Prof. Bajcar, I had to change the value of the height here from the value you specify in order to approximate the styling of my work to the example screenshot as much as possible. Hope that's okay with you. Thank You!] */
+            height: 1.5em;
+            /* Specify the font size of the input elements */
+            font-size: 1.2em;
+            /*Use the border shorthand to set the border-width, style, and color */
+            border: 1px dotted orange;
+        }
+        /* target all the "alpha" class elements */
+        .alpha {
+            /*list style as none in order to remove the bulletpoints */
+            list-style: none;
+            /* Specify that all the content of the "alpha" unordered list are all viewed on the same line */
+            display: inline-block;
+            /* Center the text so it will always be displayed in the center/middle of the webpage */
+            text-align: center;
+            padding-bottom: 3em;
+            background-color: white;
+            color: orange;
+            /* Manipulate the alpha list positioning, in order to place it exactly under the board list [and thereby approximate the screenshot example styling as much as possible] */
+            position:relative;
+            left: -1em;
+            
+        }
+        /* target only the <li> elements of the alpha class */
+        .alpha li {
+            /* Specify that all the li elements are displayed on the same line */
+            display: inline-block;
+            /* Manipulate the spacing between <li> list elements of the alpha class */
+            padding: 0px 4px;
+        }
+        .game:after, .board:after {
+            content: " ";
+            display: table;
+            clear: both;
+        }
+        /* Prof. Bajcar, in order to minimize the amount of the code I selected label elements of the board calss and the li elements [for hover styling purpoes] using the same selector. Furthermore, I added the white foreground color for both [also to make the code more efficient and shorter]   */
+        .board label:hover, .alpha li:hover {
+            background-color: orange;
+            color: white;
+        }
+        /* Select the button element that is placed in this page only */
+        main button {
+            /* Push up the button element minimally upwards in order to approxiamte the screenshot example styling as much as possible */
+            position: relative;
+            top: -1em;
+        }
+        /* Prof. Bajcar, I had to make some changes to the code to make it more responsive to the different sizes */
+        
+        /* Small devices (mobile) */
+        @media screen and (max-width: 420px) and (orientation: portrait) {
+            /* Change the positioning of the game board in order to accommodate the small screen size */
+            .game {
+                position: relative;
+                top: -0.7em;
+            }
+            /* Manipulate the width, padding and positioning of the board elements to accommodate the small screen size */
+            .board {
+                width: 50%;
+                position: relative;
+                top: 2em;
+                left: 1em;
+                padding: 10px 10px 0px 10px;
+                
+            }
+            /* downsize the input boxes in order to accommodate the small screen size */
+            .board input {
+                font-size: 10px;
+            }
+            /* downsize the lables in order to accommodate the small screen size */
+            .board label {
+                font-size: 1em;
+            }
+            /* Change the positioning of the empty list element in order to accommodate the small screen size */
+            .board li:nth-child(6) {
+                padding-right: 1em;
+            }
+            /* Change the positioning of the 2ND LINE of the list elements in order to accommodate the small screen size */
+            .board li:nth-child(7), .board li:nth-child(8), .board li:nth-child(9), .board li:nth-child(10), .board li:nth-child(11) {
+                position: relative;
+                left: -2.4em;
+            }
+            /* Change the positioning of the last list element in order to accommodate the positioning of the small screen size */
+            .board li:nth-child(11) {
+                position: relative;
+                left: 6.8em;
+                top: -3.5em;
+            }
+            /* Downsize the padding of the lower-case letter container in order to accommodate the small screen size */
+            .alpha {
+                padding-bottom: 1em;
+            }
+            /* Downsize the lowercase list elements and manipulate their padding in order to accommodate the screen size */
+            .alpha li {
+                font-size: smaller;
+                padding: 0px 1px;
+            }
+        }
+	</style> 
+</head>
+
+<body>
+<!-- All content of the HTML5 document goes under(inside) the body. The only elements that do not are <title> and <meta> -->
+	<header>
+	<!-- This element usually contains our logo (i.e. <img> element) and page name (usually using a heading element -e.g. <h1> or <h2> -->
+		<h1 title="Page title and assignment's content type">Games and Other Web Apps</h1>
+		<h2 title="Page sub-title and the name of the course">SYST10049 Web Development</h2>
+	</header>
+	<nav>
+    <!-- This is the MAIN NAVIGATION. We can have only one main navigation in the HTML5 document. This element contains the main links and hyperlinks of our webpage -->
+	
+	<!-- Prof, Bajcar, the sources for the following dropdown menu styling criteria are: 1) Your Codepen code; 2)css-snippets; 3) w3schools.com; 4) and YouTube.com
+			
+			The links for the material I used is as follows:
+        1- http://codepen.io/ebajcar/pen/YpwZLP
+		2- CSS-Snippets.com[Drop-Down Navigation with CSS only]:
+				http://css-snippets.com/drop-down-navigation/
+		3- YouTube.com[Drop Down Navigation with CSS Only]:
+				https://www.youtube.com/watch?v=NObAegNadHQ
+		4- How TO - Hoverable Dropdown[w3schools]:
+				https://www.w3schools.com/howto/howto_css_dropdown.asp
+		5-Tryit Editor v3.3[w3schools]:
+				https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_dropdown_hover
+			-->
+			<!-- Navigation to our homepage -->
+			<!-- Home Icon Source: http://fontawesome.io/icon/home/ -->
+        <a href="../index.html"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
+		<!-- Add block/box which will contain all the dropdown elements -->	
+        <div class="dropdown">
+            <!-- Navigation to the games that this website has -->
+			<!-- Gamepad Icon Source: http://fontawesome.io/icon/gamepad/ -->
+            <a href="#"><i class="fa fa-gamepad" aria-hidden="true"></i>Games</a>
+            <!-- Add block/box which will contain the dropdown content -->
+            <div class="dropdown-content">
+            <!-- This link allows the user to navigate to the 'Cryptograms' game webpage -->
+                <!-- Same source as the games anchor -->
+                <a href="cryptogram.html"><i class="fa fa-gamepad" aria-hidden="true"></i>Cryptograms</a>
+                <!-- This link allows the user to navigate to the 'Hangman' game webpage -->
+                <!-- Same source as the games anchor -->
+                <a href="hangman.html"><i class="fa fa-gamepad" aria-hidden="true"></i>Hangman</a>
+                <!-- This link allows the user to navigate to the 'Memory' game webpage -->
+                <!-- Same source as the games anchor -->
+                <a href="memory.html"><i class="fa fa-gamepad" aria-hidden="true"></i>Memory</a>
+                <!-- This link allows the user to navigate to the 'Tic-Tac-Toc' game webpage -->
+                <!-- Same source as the games anchor -->
+                <a href="tictactoe.html"><i class="fa fa-gamepad" aria-hidden="true"></i>Tic-Tac-Toc</a>
+                <!-- This link allows the user to navigate to the 'Bingo' webpage -->
+                <!-- Source: http://fontawesome.io/icon/check-square-o/ -->
+                <a href="bingo.html"><i class="fa fa-check-square-o" aria-hidden="true"></i>Bingo</a>
+            </div>
+        </div>
+			<!-- Navigation to the logout webpage -->
+			<!-- Signout Icon Source: http://fontawesome.io/icon/sign-out/ -->
+        <a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+	</nav>
+	<main>
+        <h3>Cryptograms</h3>
+        <div class="game">
+            <ul class="board">
+                <!-- one line per letter in the phrase -->
+                <li><input maxlength="1"><label>h</label></li>
+                <li><input maxlength="1"><label>e</label></li>
+                <li><input maxlength="1"><label>l</label></li>
+                <li><input maxlength="1"><label>l</label></li>
+                <li><input maxlength="1"><label>o</label></li>
+                <!-- Empty <li> element to separate between the two list [i.e. in order to display the two words separated on the screen] -->
+                        <!-- Use the "&emsp;" character to create 4 empty spaces and approximate the screenshot example styling as much as possible -->
+                            <!--Source -->
+                    <!--https://www.w3.org/MarkUp/html3/specialchars.html-->
+                <li>&emsp;</li>
+                <li><input maxlength="1"><label>w</label></li>
+                <li><input maxlength="1"><label>o</label></li>
+                <li><input maxlength="1"><label>r</label></li>
+                <li><input maxlength="1"><label>l</label></li>
+                <li><input maxlength="1"><label>d</label></li>
+            </ul>
+            <ul class="alpha">
+                <!-- We are using here the same list/styling we used for the hangman alphabet list -->
+                <li title="a">a</li>
+                <li title="b">b</li>
+                <li title="c">c</li>
+                <li title="d">d</li>
+                <li title="e">e</li>
+                <li title="f">f</li>
+                <li title="g">g</li>
+                <li title="h">h</li>
+                <li title="i">i</li>
+                <li title="j">j</li>
+                <li title="k">k</li>
+                <li title="l">l</li>
+                <li title="m">m</li>
+                <li title="n">n</li>
+                <li title="o">o</li>
+                <li title="p">p</li>
+                <li title="q">q</li>
+                <li title="r">r</li>
+                <li title="s">s</li>
+                <li title="t">t</li>
+                <li title="u">u</li>
+                <li title="v">v</li>
+                <li title="w">w</li>
+                <li title="x">x</li>
+                <li title="y">y</li>
+                <li title="z">z</li>
+            </ul>
+        </div>
+        
+        <button title="Allows the user play the board game again">Play Again</button>
+	</main>
+	<footer title="licensing and contact information">
+	<!-- Footer is used to include licensing information, contact info, copyright, and so on -->
+        <!-- Source: http://fontawesome.io/icon/facebook-official/ -->
+        <a href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+        <!-- Source: http://fontawesome.io/icon/pinterest-p/ -->
+        <a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
+        <!-- Source: http://fontawesome.io/icon/twitter/ -->
+        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        <!-- Source: http://fontawesome.io/icon/flickr/ -->
+        <a href="#"><i class="fa fa-flickr" aria-hidden="true"></i></a>
+        <!-- Source: http://fontawesome.io/icon/linkedin/ -->
+        <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+		<address>
+			Ibrahim W. Salem &#64; SYST10049 Web Development &copy; Sheridan College
+		</address>
+	</footer>
+</body>
+</html>

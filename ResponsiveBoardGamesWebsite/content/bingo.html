@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+File name: bingo.html
+Author: Ibrahim W.Salem
+Version: 1.0
+Date Created: April 22, 2017
+Date Updated: April 23, 2017
+Description: This is a board game webpage (Bingo) for the website that has been created for Assignment#4
+-->
+<head>
+<!-- Head is an element that should never be left empty. It is vitally crucial, because it is used to specify info about the page/document itself (e.g. the title of the webpage and the amount of characters allowed). -->
+	<title>ASSIGNMENT#4 BINGO BOARD GAME PAGE</title>
+	<meta charset="utf-8" />
+	<meta name="author" content="Ibrahim W. salem">
+	<meta name="description" content="This page is a board game webpage (Bingo) for the website of Assignment#4">
+    <!-- Taking control of the user's view port across all devices - Source: https://www.w3schools.com/css/css_rwd_viewport.asp -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--This CSS file contains the cascade styling for all of the web pages of this website -->
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
+	<!-- according to w3schools the following line imports the font-awesome icons
+		Source: https://www.w3schools.com/icons/ -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<!-- Note: Prof. Bajcar, I also provided fontawesome.io with my email address and accordingly they provided me with the following code snippet:
+				<script src="https://use.fontawesome.com/76b47f5b40.js"></script> 
+    However, I will not use it in this project, in order to abide by your instructions. --> 
+	
+	<style>
+        /* Since we have added the class "myCard" to the <table> element; its selector will be named '.myCard' instead of 'table' */
+        .myCard {
+            padding: 25px 5px 5px;
+            border: 1px solid orange;
+            border-radius: 9px;
+            box-shadow: 2px 2px 5px gray;
+            background-color: white;
+            color: black;
+            margin: auto;
+            /* Prof. Bajcar, I have tried many fonts here (e.g. ). However, 'sans-serif' is the font that provides the closest resemblance to your screenshot example. Thus, it is the one used here */
+            font-family: sans-serif;
+            /* This font size is the one that best approximates our output here to the screenshot example styling */
+            font-size: 2em;
+            /* Push up the table upwards in order to approxiamte the screenshot example styling as much as possible */
+            position: relative;
+            top: -1.7em;
+        }
+        /* Select all <th> and <td> table elements */
+        .myCard th, .myCard td {
+            border: 1px solid black;
+            text-align: center;
+            height: 50px;
+            width: 50px;
+        }
+        /* Select ONLY the table's <th> elements */
+        .myCard th {
+            background-color: lightblue;
+        }
+        /* Select ONLY table data 3 in Row 4 */
+        .freeCell {
+            /* Set the background color to black and the foreground to white [only for the table element classified as "freeCell" */
+            background-color: black;
+            color: white;
+            /* Set the font size for the '.freeCell' <td> element to a medium-size value (automatically calculated by the browser). This piece of code was added in order to create a visual display for the THIRD COLUMN that closely matches the screenshot example styling */
+            font-size: medium;
+            /* Source: https://www.w3schools.com/cssref/pr_font_font-size.asp */
+        }
+        main button {
+            /* Push up the button element minimally upwards in order to approxiamte the screenshot example styling as much as possible */
+            position: relative;
+            top: -2em;
+        }
+        /* Prof. Bajcar, I had to make some changes to the code to make it more responsive to the different sizes */
+        
+        /* Medium devices (tablet) */
+        @media screen and (min-width: 420px) and (max-width: 768px) and (orientation: portrait) {
+            /* Change the positioning of the main heading in order to accommodate the smaller scree size */
+            main h3 {
+                position: relative;
+                top: -1em;
+            }
+        }
+        
+        /* Small devices (mobile) */
+        @media screen and (max-width: 420px) and (orientation: portrait) {
+            /* Change the width and positioning of the table elements (rows and table data) in order to accommodate the small screen size */
+            .myCard {
+                width: 50%;
+                position: relatve;
+                top: 0.1px;
+            }
+            main button {
+            /* Push up the button element minimally downwards in order to accommodate the small screen size */
+            position: relative;
+            top: 2em;
+        }
+	</style> 
+</head>
+
+<body>
+<!-- All content of the HTML5 document goes under(inside) the body. The only elements that do not are <title> and <meta> -->
+	<header>
+	<!-- This element usually contains our logo (i.e. <img> element) and page name (usually using a heading element -e.g. <h1> or <h2> -->
+		<h1 title="Page title and assignment's content type">Games and Other Web Apps</h1>
+		<h2 title="Page sub-title and the name of the course">SYST10049 Web Development</h2>
+	</header>
+	<nav>
+    <!-- This is the MAIN NAVIGATION. We can have only one main navigation in the HTML5 document. This element contains the main links and hyperlinks of our webpage -->
+	
+	<!-- Prof, Bajcar, the sources for the following dropdown menu styling criteria are: 1) Your Codepen code; 2)css-snippets; 3) w3schools.com; 4) and YouTube.com
+			
+			The links for the material I used is as follows:
+        1- http://codepen.io/ebajcar/pen/YpwZLP
+		2- CSS-Snippets.com[Drop-Down Navigation with CSS only]:
+				http://css-snippets.com/drop-down-navigation/
+		3- YouTube.com[Drop Down Navigation with CSS Only]:
+				https://www.youtube.com/watch?v=NObAegNadHQ
+		4- How TO - Hoverable Dropdown[w3schools]:
+				https://www.w3schools.com/howto/howto_css_dropdown.asp
+		5-Tryit Editor v3.3[w3schools]:
+				https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_dropdown_hover
+			-->
+			<!-- Navigation to our homepage -->
+			<!-- Home Icon Source: http://fontawesome.io/icon/home/ -->
+        <a href="../index.html"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
+		<!-- Add block/box which will contain all the dropdown elements -->	
+        <div class="dropdown">
+            <!-- Navigation to the games that this website has -->
+			<!-- Gamepad Icon Source: http://fontawesome.io/icon/gamepad/ -->
+            <a href="#"><i class="fa fa-gamepad" aria-hidden="true"></i>Games</a>
+            <!-- Add block/box which will contain the dropdown content -->
+            <div class="dropdown-content">
+            <!-- This link allows the user to navigate to the 'Cryptograms' game webpage -->
+                <!-- Same source as the games anchor -->
+                <a href="cryptogram.html"><i class="fa fa-gamepad" aria-hidden="true"></i>Cryptograms</a>
+                <!-- This link allows the user to navigate to the 'Hangman' game webpage -->
+                <!-- Same source as the games anchor -->
+                <a href="hangman.html"><i class="fa fa-gamepad" aria-hidden="true"></i>Hangman</a>
+                <!-- This link allows the user to navigate to the 'Memory' game webpage -->
+                <!-- Same source as the games anchor -->
+                <a href="memory.html"><i class="fa fa-gamepad" aria-hidden="true"></i>Memory</a>
+                <!-- This link allows the user to navigate to the 'Tic-Tac-Toc' game webpage -->
+                <!-- Same source as the games anchor -->
+                <a href="tictactoe.html"><i class="fa fa-gamepad" aria-hidden="true"></i>Tic-Tac-Toc</a>
+                <!-- This link allows the user to navigate to the 'Bingo' webpage -->
+                <!-- Source: http://fontawesome.io/icon/check-square-o/ -->
+                <a href="bingo.html"><i class="fa fa-check-square-o" aria-hidden="true"></i>Bingo</a>
+            </div>
+        </div>
+			<!-- Navigation to the logout webpage -->
+			<!-- Signout Icon Source: http://fontawesome.io/icon/sign-out/ -->
+        <a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+	</nav>
+	<main>
+        <h3 title="Main heading of this page - The name of the Board Game">Bingo</h3>
+        <!-- Create a 5X6 table and classify the <table> element as "myCard" [as stipulated in the assignment's guidelines] -->
+        <table title="A 5X6 Bingo Board Game" class="myCard">
+			<tr title="Bingo First Row">
+				<th title="Bingo header 1, Row 1">B</th>
+				<th title="Bingo header 2, Row 1">I</th>
+				<th title="Bingo header 3, Row 1">N</th>
+				<th title="Bingo header 4, Row 1">G</th>
+				<th title="Bingo header 5, Row 1">O</th>
+			</tr>
+			<tr title="Bingo Second Row">
+				<td title="Bingo data 1, Row 2">7</td>
+				<td title="Bingo data 2, Row 2">30</td>
+				<td title="Bingo data 3, Row 2">41</td>
+				<td title="Bingo data 4, Row 2">46</td>
+				<td title="Bingo data 5, Row 2">71</td>
+			</tr>
+			<tr title="Bingo Third Row">
+				<td title="Bingo data 1, Row 3">4</td>
+				<td title="Bingo data 2, Row 3">25</td>
+				<td title="Bingo data 3, Row 3">42</td>
+				<td title="Bingo data 4, Row 3">58</td>
+				<td title="Bingo data 5, Row 3">63</td>
+			</tr>
+			<tr title="Bingo Fourth Row">
+				<td title="Bingo data 1, Row 4">6</td>
+				<td title="Bingo data 2, Row 4">16</td>
+                <!-- Classify this row as "freeCell" [As stipulated in the assignment's instructions] -->
+				<td title="Bingo data 3, Row 4" class="freeCell">FREE</td>
+				<td title="Bingo data 4, Row 4">48</td>
+				<td title="Bingo data 5, Row 4">72</td>
+			</tr>
+			<tr title="Bingo Fifth Row">
+				<td title="Bingo data 1, Row 5">5</td>
+				<td title="Bingo data 2, Row 5">26</td>
+				<td title="Bingo data 3, Row 5">37</td>
+				<td title="Bingo data 4, Row 5">50</td>
+				<td title="Bingo data 5, Row 5">64</td>
+			</tr>
+			<tr title="Bingo Sixth Row">
+				<td title="Bingo data 1, Row 6">1</td>
+				<td title="Bingo data 2, Row 6">18</td>
+				<td title="Bingo data 3, Row 6">31</td>
+				<td title="Bingo data 4, Row 6">56</td>
+				<td title="Bingo data 5, Row 6">65</td>
+			</tr>
+		</table>
+
+        
+        <button title="Allows the user to start playing the board game">Start A Game</button>
+	</main>
+	<footer title="licensing and contact information">
+	<!-- Footer is used to include licensing information, contact info, copyright, and so on -->
+        <!-- Source: http://fontawesome.io/icon/facebook-official/ -->
+        <a href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+        <!-- Source: http://fontawesome.io/icon/pinterest-p/ -->
+        <a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
+        <!-- Source: http://fontawesome.io/icon/twitter/ -->
+        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        <!-- Source: http://fontawesome.io/icon/flickr/ -->
+        <a href="#"><i class="fa fa-flickr" aria-hidden="true"></i></a>
+        <!-- Source: http://fontawesome.io/icon/linkedin/ -->
+        <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+		<address>
+			Ibrahim W. Salem &#64; SYST10049 Web Development &copy; Sheridan College
+		</address>
+	</footer>
+</body>
+</html>

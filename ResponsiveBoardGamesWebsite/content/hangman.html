@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+File name: hangman.html
+Author: Ibrahim W.Salem
+Version: 1.0
+Date Created: April 22, 2017
+Date Updated: April 23, 2017
+Description: This is a board game webpage (Hangman) for the website that has been created for Assignment#4
+-->
+<head>
+<!-- Head is an element that should never be left empty. It is vitally crucial, because it is used to specify info about the page/document itself (e.g. the title of the webpage and the amount of characters allowed). -->
+	<title>ASSIGNMENT#4 HANGMAN BOARD GAME PAGE</title>
+	<meta charset="utf-8" />
+	<meta name="author" content="Ibrahim W. salem">
+	<meta name="description" content="This page is a board game webpage (Hangman) for the website of Assignment#4">
+    <!-- Taking control of the user's view port across all devices - Source: https://www.w3schools.com/css/css_rwd_viewport.asp -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--This CSS file contains the cascade styling for all of the web pages of this website -->
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
+	<!-- according to w3schools the following line imports the font-awesome icons
+		Source: https://www.w3schools.com/icons/ -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<!-- Note: Prof. Bajcar, I also provided fontawesome.io with my email address and accordingly they provided me with the following code snippet:
+				<script src="https://use.fontawesome.com/76b47f5b40.js"></script> 
+    However, I will not use it in this project, in order to abide by your instructions. --> 
+	
+	<style>
+        #phrase {
+            font-size: 1.3em;
+            /* control the capitalization of the text (transform all characters to uppercase using the uppercase value) */
+            text-transform: uppercase;
+            /* Increase the space between the characters to 8 pixels */
+            letter-spacing: 8px;
+            /* push the phrase minimally upwards in order to match the styling of the screenshot example that we are emulating here */
+            position: relative;
+            top: -2em;
+        }
+        /* Select the unordered list using its class attribute */
+        .alphabet {
+            /* Set the maximum width to the value provided in the assignment's instructions */
+            /*[IMPORTANT!] -- Prof. I hade to increase the max-width from 420px to 430px in order to insure that (on my browser/screen) all the list elements of the last line (from s to z) are displayed on one line. Hope I will not lose points for this change. Thank You! */
+            max-width: 430px;
+            /* rmove the padding of all of the list elements, this setting will help us group all the list elements in the same line */
+            padding: 0;
+             /* Since the margin property is used to generate space around elements, when we set its value to auto; we will center the element within its container (source: https://www.w3schools.com/css/css_margin.asp)  */
+            margin: auto;
+            /* control the capitalization of the text (transform all characters to uppercase using the uppercase value) */
+            text-transform: uppercase;
+            /* Since the overflow propert allows us to control what happens if content overflows the box; we'll use the 'hidden' value to make sure that the button 'Start A Game' below the alphabet list will stay positioned under the list even if the lists' content overflows */
+            overflow: hidden;
+            /* push the list minimally upwards in order to match the styling of the screenshot example that we are emulating here */
+            position: relative;
+            top: -2.5em;
+        }
+        .alphabet li {
+            /* Set the background color to white (as stipulated in the assignment's instructions) */
+            background-color: white;
+            /*Set the foreground color to orange (as stipulated in the assignment's instructions) */
+            color: orange;
+            /* When the user mouses over each li element the cursor will change into a pointer*/
+            /* Source: https://www.w3schools.com/cssref/pr_class_cursor.asp */
+            
+            /* Prof. Bajcar, I had to increase the font-size from its original size (1em) to 1.4em in order to approximate the styling in your screenshot example as much as possible. Hope that's okay with you. Thank you! */
+            font-size: 1.4em;
+            cursor: pointer;
+            /* Use the border shorthand propert to set the border's width, style, and color */
+            border: 1px solid white;
+            /* Set the border-radius to 5 pixels as indicated in the assignment's instructions */
+            border-radius: 5px;
+            /* Specify that all <li> elements float to the left */
+            float: left;
+            /* Define the list-style-type as 'none' in order to remove the list's bulletpoints */
+            /* Source: http://stackoverflow.com/questions/8289805/getting-rid-of-bullet-points-from-ul */
+            list-style-type: none;
+            /* Set the margin to the values stipulated in the assignment's instructions */
+            margin: 0px 10px 10px 0px;
+            /*Set ONLY the padding-top to 5 pixels, as indicated in the assignment's instructions */
+            padding-top: 5px;
+            /* Set the width to 35 pixels */
+            width: 35px;
+            /* Set the height to 30 pixels */
+            height: 30px;
+            
+        }
+        .alphabet [title=a], 
+        .alphabet [title=e], 
+        .alphabet [title=k], 
+        .alphabet [title=v] {
+            background-color: gray;
+            color: lightgray;
+        }
+        /* When the user hovers over a list item, the background turns to orange, the text to white, and the borader to white [Source: Assignment's instructions]. */
+        .alphabet li:hover {
+            background-color: orange;
+            color: white;
+            border-color: white;
+        }
+        /* Push the button element on this page minimally upwards in order to approximate the styling providing in the example screenshot as much as possible */
+        main button {
+            position:relative;
+            top: -1.5em;
+        }
+        /* Select the <p> element which is the third child of its parent <main> */
+        main p:nth-child(3) {
+            /* push the 2nd paragraph element up in order to make our output match the screenshot example styling */
+            position: relative;
+            top: -2.5em;
+        }
+        /* Prof. Bajcar, I had to make some changes to the code to make it more responsive to the different sizes */
+        
+        /* Small devices (mobile) */
+        @media screen and (max-width: 420px) and (orientation: portrait) {
+            main h3 {
+                /* Change the positioning of the main heading to make it accommodate the screen size */
+                position: relative;
+                top: -0.8em;
+            }
+            /* Change the phrase size and positioning to accommodate the screen size */
+            #phrase, main p:nth-child(3) {
+                font-size: 12px;
+                position: relative;
+            }
+        }
+	</style> 
+</head>
+
+<body>
+<!-- All content of the HTML5 document goes under(inside) the body. The only elements that do not are <title> and <meta> -->
+	<header>
+	<!-- This element usually contains our logo (i.e. <img> element) and page name (usually using a heading element -e.g. <h1> or <h2> -->
+		<h1 title="Page title and assignment's content type">Games and Other Web Apps</h1>
+		<h2 title="Page sub-title and the name of the course">SYST10049 Web Development</h2>
+	</header>
+	<nav>
+    <!-- This is the MAIN NAVIGATION. We can have only one main navigation in the HTML5 document. This element contains the main links and hyperlinks of our webpage -->
+	
+	<!-- Prof, Bajcar, the sources for the following dropdown menu styling criteria are: 1) Your Codepen code; 2)css-snippets; 3) w3schools.com; 4) and YouTube.com
+			
+			The links for the material I used is as follows:
+        1- http://codepen.io/ebajcar/pen/YpwZLP
+		2- CSS-Snippets.com[Drop-Down Navigation with CSS only]:
+				http://css-snippets.com/drop-down-navigation/
+		3- YouTube.com[Drop Down Navigation with CSS Only]:
+				https://www.youtube.com/watch?v=NObAegNadHQ
+		4- How TO - Hoverable Dropdown[w3schools]:
+				https://www.w3schools.com/howto/howto_css_dropdown.asp
+		5-Tryit Editor v3.3[w3schools]:
+				https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_dropdown_hover
+			-->
+			<!-- Navigation to our homepage -->
+			<!-- Home Icon Source: http://fontawesome.io/icon/home/ -->
+        <a href="../index.html"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
+		<!-- Add block/box which will contain all the dropdown elements -->	
+        <div class="dropdown">
+            <!-- Navigation to the games that this website has -->
+			<!-- Gamepad Icon Source: http://fontawesome.io/icon/gamepad/ -->
+            <a href="#"><i class="fa fa-gamepad" aria-hidden="true"></i>Games</a>
+            <!-- Add block/box which will contain the dropdown content -->
+            <div class="dropdown-content">
+            <!-- This link allows the user to navigate to the 'Cryptograms' game webpage -->
+                <!-- Same source as the games anchor -->
+                <a href="cryptogram.html"><i class="fa fa-gamepad" aria-hidden="true"></i>Cryptograms</a>
+                <!-- This link allows the user to navigate to the 'Hangman' game webpage -->
+                <!-- Same source as the games anchor -->
+                <a href="hangman.html"><i class="fa fa-gamepad" aria-hidden="true"></i>Hangman</a>
+                <!-- This link allows the user to navigate to the 'Memory' game webpage -->
+                <!-- Same source as the games anchor -->
+                <a href="memory.html"><i class="fa fa-gamepad" aria-hidden="true"></i>Memory</a>
+                <!-- This link allows the user to navigate to the 'Tic-Tac-Toc' game webpage -->
+                <!-- Same source as the games anchor -->
+                <a href="tictactoe.html"><i class="fa fa-gamepad" aria-hidden="true"></i>Tic-Tac-Toc</a>
+                <!-- This link allows the user to navigate to the 'Bingo' webpage -->
+                <!-- Source: http://fontawesome.io/icon/check-square-o/ -->
+                <a href="bingo.html"><i class="fa fa-check-square-o" aria-hidden="true"></i>Bingo</a>
+            </div>
+        </div>
+			<!-- Navigation to the logout webpage -->
+			<!-- Signout Icon Source: http://fontawesome.io/icon/sign-out/ -->
+        <a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+	</nav>
+	<main>
+        <h3>Hangman</h3>
+        <p id="phrase">_ a k v _ _ _ e</p>
+        <p>Select your guess by clicking on the corresponding letter</p>
+        <div>
+            <ul class="alphabet" title="This unordered list contains the English Alphabets">
+                <!-- Add the title attribute, so we could style this <li> element with the .alphabet [title=a] selector -->
+                <li title="a">a</li>
+                <li>b</li>
+                <li>c</li>
+                <li>d</li>
+                <!-- Add the title attribute, so we could style this <li> element with the .alphabet [title=e] selector -->
+                <li title="e">e</li>
+                <li>f</li>
+                <li>g</li>
+                <li>h</li>
+                <li>i</li>
+                <li>j</li>
+                <!-- Add the title attribute, so we could style this <li> element with the .alphabet [title=k] selector -->
+                <li title="k">k</li>
+                <li>l</li>
+                <li>m</li>
+                <li>n</li>
+                <li>o</li>
+                <li>p</li>
+                <li>q</li>
+                <li>r</li>
+                <li>s</li>
+                <li>t</li>
+                <li>u</li>
+                <!-- Add the title attribute, so we could style this <li> element with the .alphabet [title=v] selector -->
+                <li title="v">v</li>
+                <li>w</li>
+                <li>x</li>
+                <li>y</li>
+                <li>z</li>
+        </ul>
+        </div>
+        <button title="Allows the user to start playing the board game">Start A Game</button>
+	</main>
+	<footer title="licensing and contact information">
+	<!-- Footer is used to include licensing information, contact info, copyright, and so on -->
+        <!-- Source: http://fontawesome.io/icon/facebook-official/ -->
+        <a href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+        <!-- Source: http://fontawesome.io/icon/pinterest-p/ -->
+        <a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
+        <!-- Source: http://fontawesome.io/icon/twitter/ -->
+        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        <!-- Source: http://fontawesome.io/icon/flickr/ -->
+        <a href="#"><i class="fa fa-flickr" aria-hidden="true"></i></a>
+        <!-- Source: http://fontawesome.io/icon/linkedin/ -->
+        <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+		<address>
+			Ibrahim W. Salem &#64; SYST10049 Web Development &copy; Sheridan College
+		</address>
+	</footer>
+</body>
+</html>

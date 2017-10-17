@@ -1,0 +1,271 @@
+/* Import Google Font Teko. According to stackOverFlow this code should be the first line in our code */
+@import url(https://fonts.googleapis.com/css?family=Teko:400,600);
+/* Teko Font example:
+https://fonts.google.com/?query=teko&category=Sans+Serif */
+
+/* Media query for large devices (all devices larger than the width of 768px) */
+@media screen and (min-device-width: 768px) and (min-width: 768px) {
+    body {
+        font-family: Teko;
+        /* All the webpages will have the same background color (i.e. black)*/
+        /* I choose to add the hex value instead of typing "black" in order to familiarize myself with the 'hex values' */
+        background-color: #000000;
+        /* All the webapges will have the same text-color (i.e. white)*/
+        /* I choose to add the hex value instead of typing "white" in order to familiarize myself with the 'hex values' */
+        color: #FFFFFF;
+        /* Import the background image from our images directorys */
+        background-image: url("../images/black_cat.jpg");
+        /* Free-up the screen for the text and position the background image on the right side of the screen */
+        background-position: right bottom;
+        /* Set the value of this propery to 'no-repeat', in order to avoid having the background image repeating itself*/
+        background-repeat: no-repeat;
+        /* Prof Bajcar for aesthetics and styling reasons, I decided to fix the background image position, I believe that having it fixed while the user scrolls down makes the website look more professional and makes appear as if it has a more realistic background */
+        background-attachment: fixed;
+    }
+}
+/*** NOTE: the remaining queries are at the bottom of this document ***/
+
+
+
+header {
+	/* Use RGBA colors instead of RGB or hex, because we want to add opacity here */
+	/*Sources: */
+		/* https://www.w3schools.com/cssref/css_colors_legal.asp */
+		/* https://www.w3schools.com/cssref/css3_pr_opacity.asp */
+	/* The color is ORANGE with 80% OPACITY */
+    /* Prof. Bajcar, you asked for 50% opacity. However, after comparing my output to the 'screenshot_index.png' you uploaded I found that by upticking the opacity 80% I reach the highest level of resemblance between my code and yours. Hope I will not lose points for such change, I was just trying to perfect my work */ 
+	background-color: rgba(255,165,0,0.8);
+	/* We were required to have no margins for 'header h1 and h2', thus the margin was set to 0px */
+	margin: 0px;
+	/* Instead of using the 'padding-top: 15px;' and 'padding-left: 15px;' properities we add the two values using the all-inclusive 'padding' property to make our code shorter and easier to manage */
+	padding: 15px 0px 0px 15px;
+}
+
+/* Use the the 'element element,element' CSS selector, since both h1 and h2 of header have similar styling features */
+header h1, h2{
+	margin: 0px; /* The margin [i.e. the space around the elements] for both h1 and h2 (of header) needed to be nullified for stylistic purposes*/
+	line-height: 1.1;
+	/* Prof. Bajcar, I conducted a google search trying to find way to manipulate the line height for both h1 and h2 (of header) in order to decrease the space between them and have this webpage resemble your screenshot examples as much as possible. I read about the 'height' CSS property and the 'line-height' CSS property. After trying both, I decided to use the 'line-height' property due to the fact that it displays more accurate results (even when when setting the height property to 'height: 0.1;', it still does not produce the desired result */
+		/** On most online source, the 'line-height' property is used with the paragraph element <p>. Hence, I hope that using here with heading <h1 - h6> elements is okay.
+				source: https://www.w3schools.com/cssref/pr_dim_line-height.asp		**/
+    color: #000000;
+}
+
+/**** NOTE - Prof. Bajcar: There was a need to add a 'header h1, h2' selector in order to make sure that my styling for rhe document matches the styling displaying in your example screenshot. The margin needed to be nullified for both h1 and h2 (of header), and the line height needed to be decreased in order to achieve the highest amount of resemblance to your screenshot examples ****/
+
+/* Use the 'element element' CSS selector to manipulate the styling of the h1 element of the header */
+header h1 { /* set the font size for header h1 */
+	font-size: 3.9em;
+}
+/* Use the 'element element' CSS selector to manipulate the styling of the h2 element of the header */
+header h2{ /* set the font size for header h2 */
+	font-size: 2.5em;
+}
+footer {
+	/* Use RGBA colors instead of RGB or hex, because we want to add opacity here */
+	/*Sources: */
+		/* https://www.w3schools.com/cssref/css_colors_legal.asp */
+		/* https://www.w3schools.com/cssref/css3_pr_opacity.asp */
+	/* The color is BLACK with 50% OPACITY */
+	background-color: rgba(0,0,0,0.5);
+	/* I did not use the value 'absolute' instead of the value 'fixed', because the value 'absolute' means that : "The element is positioned relative to its first positioned (not static) ancestor element", while the value 'fixed' means that: "The element is positioned relative to the browser window". Thus, what we want here is to have the footer FIXED. Always FIXED to the BOTTOM in relative relation to the browser window */
+			/* Source: https://www.w3schools.com/cssref/pr_class_position.asp  */
+	position: fixed;
+	/* The bottom propery should be nullified in order to insure that all footer elements stay at the bottom*/
+    /* This will insure the footer will stay glued to the bottom as we scroll through the content of our webpages */
+			/* Source#1[w3schools]: https://www.w3schools.com/cssref/pr_pos_bottom.asp */
+			/* Source#2[stackOverFlow]: http://stackoverflow.com/questions/2571573/css-footer-position-stick-to-bottom-of-browser */
+			/* Source#3[]stackOverFlow]: http://stackoverflow.com/questions/8721484/lock-text-to-bottom-of-browser-html-css */
+	bottom: 0px;
+	/* I also need to nullify the values of the right and left property to insure that all elements of footer stay in the middle */
+			/* Source[JS FIDDLE]: https://jsfiddle.net/minitech/5Wypu/ */
+	left: 0px;
+	right: 0px;
+	/* Since all child elements of footer are centered, then to make the code shorter, we define the footer as center aligned */
+	text-align: center;
+}
+/* Use 'element element' CSS selector to manipulate the styling of the footer's Font Awesome (FA) icons */
+/* This selector, selects all the anchors in the footer */
+footer a {
+    /* In order to group the icons close together just like the example screenshot (padding assigned as zero) */
+    /* choose the hex value of ORANGE to familiarize ourselves with the 'hex values' */
+	color: orange;
+    padding: 0;
+}
+
+
+/************************************************************************************************************************************************************************************/
+
+/**** Prof, Bajcar, the sources for the following dropdown menu styling criteria are: 1)css-snippets; 2) w3schools.com; 3) and YouTube.com
+			
+			The links for the material I used is as follows:
+        1- Your Codepen code.
+		2- CSS-Snippets.com[Drop-Down Navigation with CSS only]:
+				http://css-snippets.com/drop-down-navigation/
+		3- YouTube.com[Drop Down Navigation with CSS Only]:
+				https://www.youtube.com/watch?v=NObAegNadHQ
+		4- How TO - Hoverable Dropdown[w3schools]:
+				https://www.w3schools.com/howto/howto_css_dropdown.asp
+		5-Tryit Editor v3.3[w3schools]:
+				https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_dropdown_hover
+			****/
+nav {
+    background-color: black;
+    padding: 5px 0;
+}
+nav a {
+    text-decoration: none;
+    color: orange;
+    padding: 2px 10px;
+}
+nav a:hover {
+    /* Prof. Bajcar, as you have kindly explained in your code. The content of this selector inverts anchors background color from black to orange one hovered over */
+    color: black;
+    background-color: orange;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: black;
+    min-width: 120px;
+    box-shadow: 2px 2px 3px 0px rgba(200,200,200,0.2);
+    padding: 2px;
+}
+.dropdown:hover .dropdown-content {
+    display:block;
+}
+
+.dropdown-content a {
+    /* Prof. Bajcar, as you have kindly expounded, here we arrange the anchors inline so they'll all appear on an individual neatly organized line. In addition, we set the weight to a predefined amount for all of the anchors in order to have symmetry and a visually appealing menu */
+    display:inline-block;
+    width: 80%;
+}
+
+/************************************************************************************************************************************************************************************/
+main { /* Common aspects of the <main> element for all of the website webpages */
+    background-color: rgba(0,0,0,0.85);
+    margin:10px auto 25px ;
+    padding: 0 5px;
+    text-align: center; 
+    width:640px;
+    /* Prof. Bajcar, I added these two lines of code to push the main content upwards a little bit, in order to use up the screen space more efficiently, and in order to have my work resemble the screenshot examples as much as possible */
+    position: relative;
+    top: -3em;
+}
+/* Only select the first <h3> element inside the main */
+main h3:first-child { /* Set the size of the main header of the <main> element (since the size is going to be universal across all webpages of this website) */
+    font-size: 3.5em;
+    /* color: #FFFFFF; */ 
+    /*No need for setting the text color as white, since we have already assigned all of the body's text to be 'white' in the body {} selector above */
+}
+/* The following properties and values have been adapted from Prof. Ellen Bajcar's Assignment#3 instructions page */
+button {
+    /* Set the background color of the button to orange */
+    background-color: orange;
+    /* Define the borders of the button as having 1 pixel thickness, colored white, and with solid styling */
+    border: 1px #fff solid;
+    /* set the border radius to 5 pixels */
+    border-radius: 5px;
+    /* Set the text color of the button to white */
+    color: #fff;
+    /* Specify that the mouse cursor will change to a pointer when the user points (hovers over) at the button's text (i.e. button area) */
+    cursor: pointer;
+    /* Set the font size to  19.2 pixels */
+    font-size: 1.2em;
+    /* Set the padding top to 6 pixels and the padding bottom to 6 pixels */
+    /* Prof. Bajcar, I had to downsize the padding values in order to approximate my output to the screenshot example as much as possible. Thank you for your understanding! */
+    padding: 6px 6px;
+    /* Specfy that there's no added decoration to the text */
+    text-decoration: none;
+    /* Set the overall width of the button */
+    width: 180px;
+    /* Set the overall margin size of the button */
+    margin: 10px;
+}
+
+                /*********************************/
+/* Media Queries */
+
+/* Medium devices (tablet) */
+@media screen and (min-width: 420px) and (max-width: 768px) and (orientation: portrait) {
+    body {
+        font-family: Teko;
+        /* Maintain the background color for small devices as black */
+        background-color: #000000;
+        /* All the webapges will have the same text-color (i.e. white)*/
+        /* I choose to add the hex value instead of typing "white" in order to familiarize myself with the 'hex values' */
+        color: #FFFFFF;
+        /* hide the background image for small devices  */
+        background-image: none;
+        /* Set the margin to auto to achieve responsive design */
+        margin: auto;
+    }
+    main {
+        /* Set the width to 100%, in order to have it fully respond to different screen sizes */
+        /* Manipulate the <main> element positioning in order to accommodate the screen size */
+        width: 100%;
+        position: relative;
+        top: 0.1px;
+    }
+    /* Downsize the main heading of all of the webpages in order to accommodate the smaller screen size */
+    main h3:first-child {
+        font-size: 2em;
+    }
+    button {
+        /* Downsize the button element in all of the webpages that contain it in order to accommodate the smaller screen size */
+        font-size: 1em;
+        padding: 4px 4px;
+        width: 140px;
+    }
+    footer {
+        /* downsize all footer elements in order to have it have reasonable proportions for a tablet device screen */
+        font-size: 14px;
+    }
+}
+
+/* Small devices (mobile) */
+@media screen and (max-width: 420px) and (orientation: portrait) {
+    body {
+        font-family: Teko;
+        /* Maintain the background color for small devices as black */
+        background-color: #000000;
+        /* All the webapges will have the same text-color (i.e. white)*/
+        /* I choose to add the hex value instead of typing "white" in order to familiarize myself with the 'hex values' */
+        color: #FFFFFF;
+        /* hide the background image for small devices  */
+        background-image: none;
+        /* Set the margin to auto to achieve responsive design */
+        margin: auto;
+    }
+    header {
+        /* Hide the header for small devices */
+        display: none;
+        /* Prof. Ellen Bajcar, I wanted first to use [visibility: hidden;], but then I learned that this property will let the hidden element take up the same space as before. Hence, I ultimately elected to use the more effective 'display' property 
+        SOURCE: https://www.w3schools.com/css/css_display_visibility.asp */
+    }
+    main {
+        /* Set the width to 100%, in order to have it fully respond to different screen sizes */
+        /* Manipulate the <main> element positioning in order to accommodate the screen size */
+        width: 100%;
+        position: relative;
+        top: 0.1px;
+    }
+    /* Downsize the main heading of all of the webpages in order to accommodate the small screen size */
+    main h3:first-child {
+        font-size: 1em;
+    }
+     /* Downsize the button element in all of the webpages that contain it in order to accommodate the small screen size */
+    button {
+        font-size: 0.6em;
+        padding: 3px 3px;
+        width: 90px;
+    }
+    footer {
+        /* downsize all footer elements in order to have it have reasonable proportions for a mobile device screen */
+        font-size: 12px;
+    }
+}

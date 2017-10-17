@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+File name: tictactoe.html
+Author: Ibrahim W.Salem
+Version: 1.0
+Date Created: April 22, 2017
+Date Updated: April 23, 2017
+Description: This is a board game webpage (Tic-Tac-Toe) for the website that has been created for Assignment#4
+-->
+<head>
+<!-- Head is an element that should never be left empty. It is vitally crucial, because it is used to specify info about the page/document itself (e.g. the title of the webpage and the amount of characters allowed). -->
+	<title>ASSIGNMENT#4 TIC-TAC-TOE BOARD GAME PAGE</title>
+	<meta charset="utf-8" />
+	<meta name="author" content="Ibrahim W. salem">
+	<meta name="description" content="This page is a board game webpage (Tic-Tac-Toe) for the website of Assignment#4">
+    <!-- Taking control of the user's view port across all devices - Source: https://www.w3schools.com/css/css_rwd_viewport.asp -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--This CSS file contains the cascade styling for all of the web pages of this website -->
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
+	<!-- according to w3schools the following line imports the font-awesome icons
+		Source: https://www.w3schools.com/icons/ -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<!-- Note: Prof. Bajcar, I also provided fontawesome.io with my email address and accordingly they provided me with the following code snippet:
+				<script src="https://use.fontawesome.com/76b47f5b40.js"></script> 
+    However, I will not use it in this project, in order to abide by your instructions. --> 
+	
+	<style>
+        /* IMPROTANT: */
+        /* I referred to the following resources will creating the CSS styling for this page: */
+        
+        /*  1- CodePen, a pen by Prof. Ellen Bajcar. Link: http://codepen.io/ebajcar/pen/GZLmmB
+            2- Our in-class examples: responsive design --> flex_tictac.html. Link: http://bajcar.dev.fast.sheridanc.on.ca/www10049/class_examples/responsive_design/flex_tictac.html*/
+        
+        table {
+            /* Since the margin property is used to generate space around elements, when we set its value to auto; we will center the element within its container (source: https://www.w3schools.com/css/css_margin.asp)  */
+            margin: auto;
+            /* Align the text content of the table to the center */
+            text-align:center; /* There's no need for this line of the code since the parent element (main) is set to text-align: center as well */
+            
+            /* Set the background color to white to approximate the screenshot example as much as possible */
+            background-color: white;
+            /* Set the padding for all sides (up, right, bottom, and left) using the padding shorthand property, in order to make our output resemble the screenshot example as much as possible */
+            padding: 18px 25px 18px 25px;
+            /* The following two lines of code were added to push the table upwards (in order to approximate my output to the screenshot example as much as possible) */
+            position: relative;
+            top: -3em;
+        }
+        td {
+            /* Since the instructions stipulate that there's no border on the outside cells, thus, the border has only been added to the table data elements */
+            border: 1px solid darkblue; /* use the border shorthand property to set the color as well */
+            
+            /* Set the texts color to darkblue */
+            color: darkblue;
+            /* Use the font shorthand property to simultaneously define the font-size and the font-family */
+            font: 2.6em sans-serif;
+            /* We will also need to set the height and width of the table data elements (to values that approximate the screenshot examples as much as possible) */
+            width: 50px;
+            height: 50px;
+            /* The assignment's guidelines stipulate that we use the height and width values used above */
+        }
+        /* Even though we have added the border only to the <td> elements, but outside borders were still created. Thus, now we will have to add CSS code that will remove all the outside borders */
+        
+            /* Accordingly, we will select the first-child of the table row and remove its top border, and we will select the last-child of the table row and remove its bottom border. Then, we will select the first-child of the table data elements and remove its left border, and selet the last-child of the table data elements and remove its right border. By doing all of these steps we will remove all of the outside borders  */
+        tr:first-child td {
+            border-top: none;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        td:first-child {
+            border-left: none;
+        }
+        td:last-child {
+            border-right: none;
+        }
+         /* Push the button element on this page minimally upwards in order to approximate the styling providing in the example screenshot as much as possible */
+        main button {
+            position: relative;
+            top: -1.5em;
+        }
+        /* Prof. Bajcar, I had to make some changes to the code to make it more responsive to the different sizes */
+        
+        /* Medium devices (tablet) */
+        @media screen and (min-width: 420px) and (max-width: 768px) and (orientation: portrait) {
+            /* Change the positioning of the main heading in order to accommodate the screen size */
+            main h3 {
+                position: relative;
+                top: -1em;
+            }
+        }
+        
+        /* Small devices (mobile) */
+        @media screen and (max-width: 420px) and (orientation: portrait) {
+            /* Change the positioning of the main heading in order to accommodate the small screen size */
+            h3 {
+                position: relative;
+                top: -0.5em;
+            }
+            /* Downsize the width of the table and change its positioning in order to accommodate the small screen size */
+            table {
+                position: relative;
+                top: -1em;
+                width: 50%;
+            }
+            /* Manipulate the positioning of the button in order to accommodate the small screen size */
+            button {
+                position: fixed;
+                bottom: -10px;
+            }
+        }
+	</style> 
+</head>
+
+<body>
+<!-- All content of the HTML5 document goes under(inside) the body. The only elements that do not are <title> and <meta> -->
+	<header>
+	<!-- This element usually contains our logo (i.e. <img> element) and page name (usually using a heading element -e.g. <h1> or <h2> -->
+		<h1 title="Page title and assignment's content type">Games and Other Web Apps</h1>
+		<h2 title="Page sub-title and the name of the course">SYST10049 Web Development</h2>
+	</header>
+	<nav>
+    <!-- This is the MAIN NAVIGATION. We can have only one main navigation in the HTML5 document. This element contains the main links and hyperlinks of our webpage -->
+	
+	<!-- Prof, Bajcar, the sources for the following dropdown menu styling criteria are: 1) Your Codepen code; 2)css-snippets; 3) w3schools.com; 4) and YouTube.com
+			
+			The links for the material I used is as follows:
+        1- http://codepen.io/ebajcar/pen/YpwZLP
+		2- CSS-Snippets.com[Drop-Down Navigation with CSS only]:
+				http://css-snippets.com/drop-down-navigation/
+		3- YouTube.com[Drop Down Navigation with CSS Only]:
+				https://www.youtube.com/watch?v=NObAegNadHQ
+		4- How TO - Hoverable Dropdown[w3schools]:
+				https://www.w3schools.com/howto/howto_css_dropdown.asp
+		5-Tryit Editor v3.3[w3schools]:
+				https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_dropdown_hover
+			-->
+			<!-- Navigation to our homepage -->
+			<!-- Home Icon Source: http://fontawesome.io/icon/home/ -->
+        <a href="../index.html"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
+		<!-- Add block/box which will contain all the dropdown elements -->	
+        <div class="dropdown">
+            <!-- Navigation to the games that this website has -->
+			<!-- Gamepad Icon Source: http://fontawesome.io/icon/gamepad/ -->
+            <a href="#"><i class="fa fa-gamepad" aria-hidden="true"></i>Games</a>
+            <!-- Add block/box which will contain the dropdown content -->
+            <div class="dropdown-content">
+            <!-- This link allows the user to navigate to the 'Cryptograms' game webpage -->
+                <!-- Same source as the games anchor -->
+                <a href="cryptogram.html"><i class="fa fa-gamepad" aria-hidden="true"></i>Cryptograms</a>
+                <!-- This link allows the user to navigate to the 'Hangman' game webpage -->
+                <!-- Same source as the games anchor -->
+                <a href="hangman.html"><i class="fa fa-gamepad" aria-hidden="true"></i>Hangman</a>
+                <!-- This link allows the user to navigate to the 'Memory' game webpage -->
+                <!-- Same source as the games anchor -->
+                <a href="memory.html"><i class="fa fa-gamepad" aria-hidden="true"></i>Memory</a>
+                <!-- This link allows the user to navigate to the 'Tic-Tac-Toc' game webpage -->
+                <!-- Same source as the games anchor -->
+                <a href="tictactoe.html"><i class="fa fa-gamepad" aria-hidden="true"></i>Tic-Tac-Toc</a>
+                <!-- This link allows the user to navigate to the 'Bingo' webpage -->
+                <!-- Source: http://fontawesome.io/icon/check-square-o/ -->
+                <a href="bingo.html"><i class="fa fa-check-square-o" aria-hidden="true"></i>Bingo</a>
+            </div>
+        </div>
+			<!-- Navigation to the logout webpage -->
+			<!-- Signout Icon Source: http://fontawesome.io/icon/sign-out/ -->
+        <a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+	</nav>
+	<main>
+        <h3>Tic Tac Toe</h3>
+        <!-- The following code creates a 3X3 table as requested -->
+        <!-- We also do not add the border attribute in order to create a table without borders -->
+        <table title="A 3X3 Tic-Tac-Toe Board Game">
+            <!-- Add three table rows + add three table data blocks in each row -->
+            <tr title="Table Row 1 - Tic-Tac-Toe Board Game">
+                <td title="Table Data 1, Row 1 - Tic-Tac-Toe Board Game">T</td>
+                <td title="Table Data 2, Row 1 - Tic-Tac-Toe Board Game">I</td>
+                <td title="Table Data 3, Row 1 - Tic-Tac-Toe Board Game">C</td>
+            </tr>
+            <tr title="Table Row 2 - Tic-Tac-Toe Board Game">
+                <td title="Table Data 1, Row 2 - Tic-Tac-Toe Board Game">T</td>
+                <td title="Table Data 2, Row 2 - Tic-Tac-Toe Board Game">A</td>
+                <td title="Table Data 3, Row 2 - Tic-Tac-Toe Board Game">C</td>
+            </tr>
+            <tr title="Table Row 2 - Tic-Tac-Toe Board Game">
+                <td title="Table Data 1, Row 3 - Tic-Tac-Toe Board Game">T</td>
+                <td title="Table Data 2, Row 3 - Tic-Tac-Toe Board Game">O</td>
+                <td title="Table Data 3, Row 3 - Tic-Tac-Toe Board Game">E</td>
+            </tr>
+        </table>
+        
+        <button title="Allows the user to start playing the board game">Start A Game</button>
+        
+	</main>
+	<footer title="licensing and contact information">
+	<!-- Footer is used to include licensing information, contact info, copyright, and so on -->
+        <!-- Source: http://fontawesome.io/icon/facebook-official/ -->
+        <a href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+        <!-- Source: http://fontawesome.io/icon/pinterest-p/ -->
+        <a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
+        <!-- Source: http://fontawesome.io/icon/twitter/ -->
+        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        <!-- Source: http://fontawesome.io/icon/flickr/ -->
+        <a href="#"><i class="fa fa-flickr" aria-hidden="true"></i></a>
+        <!-- Source: http://fontawesome.io/icon/linkedin/ -->
+        <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+		<address>
+			Ibrahim W. Salem &#64; SYST10049 Web Development &copy; Sheridan College
+		</address>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+File name: index.html
+Author: Ibrahim W.Salem
+Version: 1.0
+Date Created: April 22, 2017
+Date Updated: April 23, 2017
+Description: This is the main page for the website that has been created for Assignment#4
+-->
+<head>
+<!-- Head is an element that should never be left empty. It is vitally crucial, because it is used to specify info about the page/document itself (e.g. the title of the webpage and the amount of characters allowed). -->
+	<title>ASSIGNMENT#4 MAIN PAGE</title>
+	<meta charset="utf-8" />
+	<meta name="author" content="Ibrahim W. salem">
+	<meta name="description" content="This page is the main page for the website of Assignment#4">
+    <!-- Taking control of the user's view port across all devices - Source: https://www.w3schools.com/css/css_rwd_viewport.asp -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--This CSS file contains the cascade styling for all of the web pages of this website -->
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<!-- according to w3schools the following line imports the font-awesome icons
+		Source: https://www.w3schools.com/icons/ -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<!-- Note: Prof. Bajcar, I also provided fontawesome.io with my email address and accordingly they provided me with the following code snippet:
+				<script src="https://use.fontawesome.com/76b47f5b40.js"></script> 
+    However, I will not use it in this project, in order to abide by your instructions. --> 
+	
+	<style>    
+        /* Select all <img> elements inside the <main> element. We only have one image in this wepbage, thus, this selector will work properly */
+        main img {
+            /* In order to align the image left or right, we should use the CSS property 'float' --> Source: w3schools.com */
+            float: left;
+            position: relative;
+            top: -1em;
+        }
+        p:first-of-type {
+            font-size: 1.5em;
+            text-align: justify;
+            /* Prof. Bajcar, I did not use the 'right' value with the 'text-align' property here, because if I do so; the text will not look neatly justified. Hope this change is acceptable by you. Thank you! */
+        }
+        p:nth-of-type(2) {
+            text-align: justify;
+            position: relative;
+            top: -2em;
+        }
+        h3:nth-of-type(2) {
+            position: relative;
+            left: -1.3em;
+            font-size: 3em;
+        }
+        
+        /* Prof. Bajcar, I had to make some changes to the code to make it more responsive to the different sizes */
+        
+        /* Medium devices (tablet) */
+        @media screen and (min-width: 420px) and (max-width: 768px) and (orientation: portrait) {
+            h3:nth-of-type(2) {
+                font-size: 1.8em;
+                /* downsize the font size to fit the screen */
+            }
+            /* Have the image take 40% of its overall possible width in order to have it resize appropriately as we resize the page from 420px width to smaller width values */
+            img {
+                width: 40%;
+            }
+            /* downsize the text to make it fit the screen */
+            p:first-of-type {
+                font-size: 1.3em;
+                width: 95%;
+            }
+            /* downsize the text to make it fit the screen */
+            /* Change the paragraph position to make it fit the screen size */
+            p:nth-of-type(2) {
+                font-size: 1.3em;
+                width: 95%;
+                position: relative;
+                top: 0.1px;
+            }
+        }
+
+        /* Small devices (mobile) */
+        @media screen and (max-width: 420px) and (orientation: portrait) {
+            h3:nth-of-type(2) {
+                /* downsize the font to fit the screen */
+                font-size: 1em;
+            }
+            /* Have the image take half of its overall possible width in order to have it resize appropriately as we resize the page from 420px width to smaller width values */
+            img {
+                width: 50%;
+            }
+            p:first-of-type {
+                /* manipulate the 1st paragraph's size+width to fit the screen size */
+                font-size: 1em;
+                width: 95%;
+            }
+            /* manipulate the 2nd paragraph's size+width to fit the screen size */
+            /* Change the 2nd screen's positioning to fit the screen */
+            p:nth-of-type(2) {
+                font-size: 1em;
+                width: 95%;
+                position: relative;
+                top: 0.1px;
+            }
+        }
+        
+        
+	</style> 
+</head>
+
+<body>
+<!-- All content of the HTML5 document goes under(inside) the body. The only elements that do not are <title> and <meta> -->
+	<header>
+	<!-- This element usually contains our logo (i.e. <img> element) and page name (usually using a heading element -e.g. <h1> or <h2> -->
+		<h1 title="Page title and assignment's content type">Games and Other Web Apps</h1>
+		<h2 title="Page sub-title and the name of the course">SYST10049 Web Development</h2>
+	</header>
+	<nav>
+    <!-- This is the MAIN NAVIGATION. We can have only one main navigation in the HTML5 document. This element contains the main links and hyperlinks of our webpage -->
+	
+	<!-- Prof, Bajcar, the sources for the following dropdown menu styling criteria are: 1) Your Codepen code; 2)css-snippets; 3) w3schools.com; 4) and YouTube.com
+			
+			The links for the material I used is as follows:
+        1- http://codepen.io/ebajcar/pen/YpwZLP
+		2- CSS-Snippets.com[Drop-Down Navigation with CSS only]:
+				http://css-snippets.com/drop-down-navigation/
+		3- YouTube.com[Drop Down Navigation with CSS Only]:
+				https://www.youtube.com/watch?v=NObAegNadHQ
+		4- How TO - Hoverable Dropdown[w3schools]:
+				https://www.w3schools.com/howto/howto_css_dropdown.asp
+		5-Tryit Editor v3.3[w3schools]:
+				https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_dropdown_hover
+			-->
+			<!-- Navigation to our homepage -->
+			<!-- Home Icon Source: http://fontawesome.io/icon/home/ -->
+        <a href="index.html"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
+		<!-- Add block/box which will contain all the dropdown elements -->	
+        <div class="dropdown">
+            <!-- Navigation to the games that this website has -->
+			<!-- Gamepad Icon Source: http://fontawesome.io/icon/gamepad/ -->
+            <a href="#"><i class="fa fa-gamepad" aria-hidden="true"></i>Games</a>
+            <!-- Add block/box which will contain the dropdown content -->
+            <div class="dropdown-content">
+            <!-- This link allows the user to navigate to the 'Cryptograms' game webpage -->
+                <!-- Same source as the games anchor -->
+                <a href="content/cryptogram.html"><i class="fa fa-gamepad" aria-hidden="true"></i>Cryptograms</a>
+                <!-- This link allows the user to navigate to the 'Hangman' game webpage -->
+                <!-- Same source as the games anchor -->
+                <a href="content/hangman.html"><i class="fa fa-gamepad" aria-hidden="true"></i>Hangman</a>
+                <!-- This link allows the user to navigate to the 'Memory' game webpage -->
+                <!-- Same source as the games anchor -->
+                <a href="content/memory.html"><i class="fa fa-gamepad" aria-hidden="true"></i>Memory</a>
+                <!-- This link allows the user to navigate to the 'Tic-Tac-Toc' game webpage -->
+                <!-- Same source as the games anchor -->
+                <a href="content/tictactoe.html"><i class="fa fa-gamepad" aria-hidden="true"></i>Tic-Tac-Toc</a>
+                <!-- This link allows the user to navigate to the 'Bingo' webpage -->
+                <!-- Source: http://fontawesome.io/icon/check-square-o/ -->
+                <a href="content/bingo.html"><i class="fa fa-check-square-o" aria-hidden="true"></i>Bingo</a>
+            </div>
+        </div>
+			<!-- Navigation to the logout webpage -->
+			<!-- Signout Icon Source: http://fontawesome.io/icon/sign-out/ -->
+        <a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+	</nav>
+	<main>
+        <!-- Font Awesome Calendar icon imported from:
+                http://fontawesome.io/icon/calendar/    -->
+        <h3><i class="fa fa-calendar" aria-hidden="true"></i> News & Noteworthy</h3>
+        <img src="images/dice3.jpg" alt="an image of a couple of dice objects (3 in total, with the following colors: orange, blue, and red." title="Three Dice Objects">
+        <p>Describes the purpose of the site and benefits of becoming a member. Duis commodo ipsum augue, vitae viverra dui venenatis nec. Maecenas id sapien leo. Fusce eleifend elit eu turpis blandit, sit amet vulputate magna facilisis. Proin semper tristique.</p>
+        <!-- Font Awesome Calendar icon imported from:
+                http://fontawesome.io/icon/thumbs-up/ -->
+        <h3><i class="fa fa-thumbs-up" aria-hidden="true"></i> Members' Corner</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec turpis semper, vulputate libero sodales, commodo lacus. Etiam sit amet feugiat massa, sit amet consectetur lacus. Etiam tristique nulla et interdum congue. Maecenas bibendum elit in erat aliquet, at venenatis augue posuere. Praesent laoreet fermentum pharetra. Aenean nec erat sit amet mauris rutrum maximus ac sit amet eros. Aenean a ligula lacus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Maecenas quis suscipit tellus. Aliquam et massa eros. In hac habitasse platea dictumst. Sed.</p>
+	</main>
+	<footer title="licensing and contact information">
+	<!-- Footer is used to include licensing information, contact info, copyright, and so on -->
+        <!-- Source: http://fontawesome.io/icon/facebook-official/ -->
+        <a href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+        <!-- Source: http://fontawesome.io/icon/pinterest-p/ -->
+        <a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
+        <!-- Source: http://fontawesome.io/icon/twitter/ -->
+        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        <!-- Source: http://fontawesome.io/icon/flickr/ -->
+        <a href="#"><i class="fa fa-flickr" aria-hidden="true"></i></a>
+        <!-- Source: http://fontawesome.io/icon/linkedin/ -->
+        <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+		<address>
+			Ibrahim W. Salem &#64; SYST10049 Web Development &copy; Sheridan College
+		</address>
+	</footer>
+</body>
+</html>

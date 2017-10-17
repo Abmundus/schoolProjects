@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+File name: memory.html
+Author: Ibrahim W.Salem
+Version: 1.0
+Date Created: April 22, 2017
+Date Updated: April 23, 2017
+Description: This is a board game webpage (Memory) for the website that has been created for Assignment#4
+-->
+<head>
+<!-- Head is an element that should never be left empty. It is vitally crucial, because it is used to specify info about the page/document itself (e.g. the title of the webpage and the amount of characters allowed). -->
+	<title>ASSIGNMENT#4 MEMORY BOARD GAME PAGE</title>
+	<meta charset="utf-8" />
+	<meta name="author" content="Ibrahim W. salem">
+	<meta name="description" content="This page is a board game webpage (Memory) for the website of Assignment#4">
+    <!-- Taking control of the user's view port across all devices - Source: https://www.w3schools.com/css/css_rwd_viewport.asp -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--This CSS file contains the cascade styling for all of the web pages of this website -->
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
+	<!-- according to w3schools the following line imports the font-awesome icons
+		Source: https://www.w3schools.com/icons/ -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<!-- Note: Prof. Bajcar, I also provided fontawesome.io with my email address and accordingly they provided me with the following code snippet:
+				<script src="https://use.fontawesome.com/76b47f5b40.js"></script> 
+    However, I will not use it in this project, in order to abide by your instructions. --> 
+	
+	<style>
+        /* Prof. Bajcar, the code you have kindly provided for the table images is not enough for styling the table with the exact styling you have kindly demosntrated in the example screenshots. As a result, I added selectors for {{{{{{{}}}}}}} to produce the closest and most approximate resemblance to your example */
+        
+        /* select the <table> element */
+        table {
+        /* the first thing we need to do is to join the different borders of the table in order to remove the space between the images and make the orange border fully transparent. */
+            /* According to w3schools.com and stackOverFlow.com this can be done using the 'border-collapse' property while using the 'collapse' value
+                    source(a): https://www.w3schools.com/cssref/pr_border-collapse.asp
+                    source(b): http://stackoverflow.com/questions/2039438/removing-unwanted-table-cell-borders-with-css */
+
+            /* Automatic adjustment of the margin in order to equip the website with responsive design elemnts that will suit all browser screen sizes */
+            margin: auto;
+            
+            /* Push the table upwards in order to approximate the screenshot example styling as much as possible */
+            border-collapse: collapse;
+            position: relative;
+            top: -3em;
+            
+            /* The second thing we need to do is to resize the table data elements because they are almost double the size of the screeshot example*/    
+            
+            /* Prof. Bajcar, I tried resizing the table using the CSS3 2D transformation tool, but that created a lot of void unneeded space between the table and the reset button, thus I deleted this part of the code */
+            
+            /* -ms-transform: scale(0.7, 0.7); 
+               -webkit-transform: scale(0.7, 0.7); 
+               transform: scale(0.7, 0.7); */    
+        }
+        
+        /* Select all the table data elements (select the table ->then the rows --> then its children --> the table data elements) */
+        table tr td {
+            /* Since using the CSS3 2D transformation tool is not optimal here we will unfortunately have to manipulate the width and height of the table row elements (i.e. table data) */
+            width: 4em;
+            height: 4em;
+            /* add the inline-block property to fill the width of the objects and have them wrapped nicely by the borwser */
+            /* source: 
+            1) http://learnlayout.com/inline-block.html
+            2) https://www.w3schools.com/css/css_inline-block.asp */
+            display: inline-block;
+            
+            /* The lasst step would be to go back to the table selector and adjust the margin. In order to make our website as responsive as possible (to different screen sizes), we'll use the 'auto' value for the property 'margin' */
+        }
+        
+        
+        /* Select all the img tags inside the <table> element */
+        /* the following code has been adapted from Prof. Bajcar's Assignment#3 instructions page */
+        table img {
+            /* Set the width of the images to 100% */
+            width: 100%;
+            /* Set the height of the images to 100% */
+            height: 100%;
+            /* Set the thickness of images border to 1 pixel in addition to specifying its color as orange with a solid styling */
+            border: 1px solid orange;
+            box-shadow: 1px 1px 2px white, 2px 2px 5px black;
+            /* Set the background color of the images to white */
+            background-color: white;
+        }
+        /* Push the button element on this page minimally upwards in order to approximate the styling providing in the example screenshot as much as possible */
+        main button {
+            position: relative;
+            top: -1em;
+        }
+        /* Prof. Bajcar, I had to make some changes to the code to make it more responsive to the different sizes */
+        
+        /* Medium devices (tablet) */
+        @media screen and (min-width: 420px) and (max-width: 768px) and (orientation: portrait) {
+            /* Change the main heading's positioning to accommodate the screen size */
+            main h3 {
+                position: relative;
+                top: -1em;
+            }
+        }
+        /* Small devices (mobile) */
+        @media screen and (max-width: 420px) and (orientation: portrait) {
+            table, tr, td {
+                /* manipulate the width and positioning of the table rows and data in order to accommodate the small screen size */
+                width: 100%;
+                display: inline-block;
+                position: relative;
+                top: 0.1px;
+            }
+            /* downsize the width and height of the rows, data columns, and images in order to accommodate the small screen size */
+            tr, td, img {
+                width: 20%;
+                height: 20%;
+            }
+            /* Change the positioning of the table row child elements in order to accommodate the small screen size */
+            tr:nth-child(1) {
+                position: relative;
+                left: 1em;
+            }
+            /* Change the positioning of the table row child elements in order to accommodate the small screen size */
+            tr:nth-child(3) {
+                position: relative;
+                right: 1em;
+            }
+            /* Change the positioning of the table row child elements in order to accommodate the small screen size */
+            tr:nth-child(4) {
+                position: relative;
+                left: 2.3em;
+            }
+            /* Change the positioning of the table row child elements in order to accommodate the small screen size */
+            tr:nth-child(5) {
+                position: relative;
+                left: 1.3em;
+            }
+            /* Change the positioning of the table row child elements in order to accommodate the small screen size */
+            tr:nth-child(6) {
+                position: relative;
+                left: 3.1em;
+                top: -24.75em;
+            }
+            /* Change the positioning of the table row child elements in order to accommodate the small screen size */
+            main button {
+                position: relative;
+                top: -40em;
+            }
+        }
+	</style> 
+</head>
+
+<body>
+<!-- All content of the HTML5 document goes under(inside) the body. The only elements that do not are <title> and <meta> -->
+	<header>
+	<!-- This element usually contains our logo (i.e. <img> element) and page name (usually using a heading element -e.g. <h1> or <h2> -->
+		<h1 title="Page title and assignment's content type">Games and Other Web Apps</h1>
+		<h2 title="Page sub-title and the name of the course">SYST10049 Web Development</h2>
+	</header>
+	<nav>
+    <!-- This is the MAIN NAVIGATION. We can have only one main navigation in the HTML5 document. This element contains the main links and hyperlinks of our webpage -->
+	
+	<!-- Prof, Bajcar, the sources for the following dropdown menu styling criteria are: 1) Your Codepen code; 2)css-snippets; 3) w3schools.com; 4) and YouTube.com
+			
+			The links for the material I used is as follows:
+        1- http://codepen.io/ebajcar/pen/YpwZLP
+		2- CSS-Snippets.com[Drop-Down Navigation with CSS only]:
+				http://css-snippets.com/drop-down-navigation/
+		3- YouTube.com[Drop Down Navigation with CSS Only]:
+				https://www.youtube.com/watch?v=NObAegNadHQ
+		4- How TO - Hoverable Dropdown[w3schools]:
+				https://www.w3schools.com/howto/howto_css_dropdown.asp
+		5-Tryit Editor v3.3[w3schools]:
+				https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_dropdown_hover
+			-->
+			<!-- Navigation to our homepage -->
+			<!-- Home Icon Source: http://fontawesome.io/icon/home/ -->
+        <a href="../index.html"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
+		<!-- Add block/box which will contain all the dropdown elements -->	
+        <div class="dropdown">
+            <!-- Navigation to the games that this website has -->
+			<!-- Gamepad Icon Source: http://fontawesome.io/icon/gamepad/ -->
+            <a href="#"><i class="fa fa-gamepad" aria-hidden="true"></i>Games</a>
+            <!-- Add block/box which will contain the dropdown content -->
+            <div class="dropdown-content">
+            <!-- This link allows the user to navigate to the 'Cryptograms' game webpage -->
+                <!-- Same source as the games anchor -->
+                <a href="cryptogram.html"><i class="fa fa-gamepad" aria-hidden="true"></i>Cryptograms</a>
+                <!-- This link allows the user to navigate to the 'Hangman' game webpage -->
+                <!-- Same source as the games anchor -->
+                <a href="hangman.html"><i class="fa fa-gamepad" aria-hidden="true"></i>Hangman</a>
+                <!-- This link allows the user to navigate to the 'Memory' game webpage -->
+                <!-- Same source as the games anchor -->
+                <a href="memory.html"><i class="fa fa-gamepad" aria-hidden="true"></i>Memory</a>
+                <!-- This link allows the user to navigate to the 'Tic-Tac-Toc' game webpage -->
+                <!-- Same source as the games anchor -->
+                <a href="tictactoe.html"><i class="fa fa-gamepad" aria-hidden="true"></i>Tic-Tac-Toc</a>
+                <!-- This link allows the user to navigate to the 'Bingo' webpage -->
+                <!-- Source: http://fontawesome.io/icon/check-square-o/ -->
+                <a href="bingo.html"><i class="fa fa-check-square-o" aria-hidden="true"></i>Bingo</a>
+            </div>
+        </div>
+			<!-- Navigation to the logout webpage -->
+			<!-- Signout Icon Source: http://fontawesome.io/icon/sign-out/ -->
+        <a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+	</nav>
+	<main>
+        <h3 title="Main heading - Name of the board game">Memory</h3>
+        <table title="A 6X6 Memory Board Game">
+			<tr title="Memory First Row">
+				<td title="Memory data 1, Row 1"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+				<td title="Memory data 2, Row 1"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+				<td title="Memory data 3, Row 1"><img title="An image of a house" src="../images/image12.png" alt="An image representng a drawn house."></td>
+				<td title="Memory data 4, Row 1"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+				<td title="Memory data 5, Row 1"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+				<td title="Memory data 6, Row 1"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+			</tr>
+			<tr title="Memory Second Row">
+				<td title="Memory data 1, Row 2"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+				<td title="Memory data 2, Row 2"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+				<td title="Memory data 3, Row 2"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+				<td title="Memory data 4, Row 2"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+				<td title="Memory data 5, Row 2"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+				<td title="Memory data 6, Row 2"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+			</tr>
+			<tr title="Memory Third Row">
+				<td title="Memory data 1, Row 3"><img title="An image of a house" src="../images/image12.png" alt="An image representng a drawn house."></td>
+				<td title="Memory data 2, Row 3"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+				<td title="Memory data 3, Row 3"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+                    <!-- Prof. Bajcar, the image of the red car was not available in the download folder, which you have kindly provided, and as a result I had to use the blue car image instead -->
+				<td title="Memory data 4, Row 3"><img title="An image of a blue car" src="../images/image14.png" alt="An image representng a car."></td>
+				<td title="Memory data 5, Row 3"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+				<td title="Memory data 6, Row 3"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+			</tr>
+			<tr title="Memory Fourth Row">
+				<td title="Memory data 1, Row 4"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+				<td title="Memory data 2, Row 4"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+				<td title="Memory data 3, Row 4"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+				<td title="Memory data 4, Row 4"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+				<td title="Memory data 5, Row 4"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+				<td title="Memory data 6, Row 4"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+			</tr>
+			<tr title="Memory Fifth Row">
+				<td title="Memory data 1, Row 5"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+				<td title="Memory data 2, Row 5"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+				<td title="Memory data 3, Row 5"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+				<td title="Memory data 4, Row 5"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+                    <!-- Prof. Bajcar, the image of the 'green fish' was not available in the download folder, which you have kindly provided, and as a result I had to use the 'blue flower' image instead -->
+				<td title="Memory data 5, Row 5"><img title="An image of a blue flower" src="../images/image2.png" alt="An image representng a blue flower."></td>
+				<td title="Memory data 6, Row 5"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+			</tr>
+			<tr title="Memory Sixth Row">
+				<td title="Memory data 1, Row 6"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+				<td title="Memory data 2, Row 6"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+				<td title="Memory data 3, Row 6"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+				<td title="Memory data 4, Row 6"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+                    <!-- Prof. Bajcar, the image of the red car was not available in the download folder, which you have kindly provided, and as a result I had to use the blue car image instead -->
+				<td title="Memory data 5, Row 6"><img title="An image of a blue car" src="../images/image14.png" alt="An image representng a car."></td>
+				<td title="Memory data 6, Row 6"><img title="The back side of the card" src="../images/image0.gif" alt="An image representng the back of a card."></td>
+			</tr>
+		</table>
+        
+        <button title="Allows the user to restart the board game">Reset</button>
+        
+	</main>
+	<footer title="licensing and contact information">
+	<!-- Footer is used to include licensing information, contact info, copyright, and so on -->
+        <!-- Source: http://fontawesome.io/icon/facebook-official/ -->
+        <a href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+        <!-- Source: http://fontawesome.io/icon/pinterest-p/ -->
+        <a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
+        <!-- Source: http://fontawesome.io/icon/twitter/ -->
+        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        <!-- Source: http://fontawesome.io/icon/flickr/ -->
+        <a href="#"><i class="fa fa-flickr" aria-hidden="true"></i></a>
+        <!-- Source: http://fontawesome.io/icon/linkedin/ -->
+        <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+		<address>
+			Ibrahim W. Salem &#64; SYST10049 Web Development &copy; Sheridan College
+		</address>
+	</footer>
+</body>
+</html>
